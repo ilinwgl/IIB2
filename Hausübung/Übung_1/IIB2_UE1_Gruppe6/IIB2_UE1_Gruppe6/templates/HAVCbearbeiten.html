@@ -1,0 +1,35 @@
+﻿{% extends 'base.html' %}
+{% block head %}HVAC Anlagen Bearbeiten{% endblock %}
+
+ {% block body %}
+{% if HAVC %}
+    <form action="{{ url_for('application.havcspeichern') }}" method="post">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th><input type="text" name="name" id="name" value="{{HAVC[1]}}" required></th>
+            </tr>
+            <tr>
+                <th>Typ</th>
+                <th><input type="text" name="typ" id="typ" value="{{HAVC[2]}}" required></th>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <th><input type="text" name="position" id="position" value="{{HAVC[3]}}" required></th>
+            </tr>
+            <tr>
+                <th>Ebene</th>
+                <th><input type="text" name="ebene" id="ebene" value="{{HAVC[4]}}" required></th>
+            </tr>
+            <tr>
+                <th>
+                    <button name="speichern" type="submit" value="{{HAVC[0]}}">Speichern</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

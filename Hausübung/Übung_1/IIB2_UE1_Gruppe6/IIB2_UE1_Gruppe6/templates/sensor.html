@@ -1,0 +1,56 @@
+﻿{% extends 'base.html' %}
+{% block head %}Sensoren{% endblock %}
+
+ {% block body %}
+{% if sens %}
+<table border="1" cellpadding="2" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Typ</th>
+        <th>Position</th>
+
+    </tr>
+    {% for sen in sens %}
+    <tr>
+        <td>
+            {{sen[1]}}
+        </td>
+        <td>
+            {{sen[2]}}
+        </td>
+        <td>
+            {{sen[3]}}
+        </td>
+        <td>
+            <form action="{{ url_for('application.sensordelete') }}" method="post">
+                <input type="hidden" name="raum" id="raum" value="{{sen[4]}}" required>
+                <button name="sen_entfernen" type="submit" value="{{sen[0]}}">Entfernen</button>
+            </form>
+        </td>
+        <td>
+            <form action="{{ url_for('application.sensorbearbeiten') }}" method="post">
+                <button name="bearbeiten" type="submit" value="{{sen[0]}}">Bearbeiten</button>
+            </form>
+        </td>
+    </tr>
+
+    {% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>
+            <form action="{{ url_for('application.sensoradd') }}" method="post">
+                <button name="hinzufugen" type="submit" value="Hinzufügen">Hinzufügen</button>
+            </form>
+        </th>
+
+    </tr>
+</table>
+{%else%}
+<p>Keine Daten</p>
+{% endif %}
+
+{% endblock %}
+
+

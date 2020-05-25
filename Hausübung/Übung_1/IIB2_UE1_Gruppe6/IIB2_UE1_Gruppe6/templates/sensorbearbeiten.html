@@ -1,0 +1,39 @@
+﻿{% extends 'base.html' %}
+{% block head %}Sensoren Bearbeiten{% endblock %}
+
+ {% block body %}
+{% if sen %}
+<form action="{{ url_for('application.sensorspeichern') }}" method="post">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th><input type="text" name="name" id="name" value="{{sen[1]}}" required></th>
+        </tr>
+        <tr>
+            <th>Typ</th>
+            <th><input type="text" name="typ" id="typ" value="{{sen[2]}}" required></th>
+        </tr>
+        <tr>
+            <th>Position</th>
+            <th><input type="text" name="position" id="position" value="{{sen[3]}}" required></th>
+        </tr>
+        <tr>
+            <th>Raum</th>
+            <th><input type="text" name="raum" id="raum" value="{{sen[4]}}" required></th>
+        </tr>
+        <tr>
+            <th>HAVC Analge</th>
+            <th><input type="text" name="havc" id="havc" value="{{sen[5]}}" required></th>
+        </tr>
+        <tr>
+            <th>
+                <button name="speichern" type="submit" value="{{sen[0]}}">Speichern</button>
+            </th>
+        </tr>
+    </table>
+</form>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,52 @@
+﻿{% extends 'base.html' %}
+{% block head %}Sensor Add{% endblock %}
+
+ {% block body %}
+{% if raums and havcs %}
+
+    <form action="{{ url_for('application.sensornew') }}" method="post">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th><input type="text" name="name" id="name" required></th>
+            </tr>
+            <tr>
+                <th>Typ</th>
+                <th><input type="text" name="typ" id="typ" required></th>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <th><input type="text" name="position" id="position" required></th>
+            </tr>
+            <tr>
+                <th>Raum</th>
+                <th>
+                    <select name="raum">
+                        {% for raum in raums %}
+                        <option>{{raum[0]}}</option>
+                        {% endfor %}
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th>HAVC Anlage</th>
+                <th>
+                    <select name="havc">
+                        {% for havc in havcs %}
+                        <option>{{havc[0]}}</option>
+                        {% endfor %}
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <button name="speichern" type="submit" value="Speichern">Speichern</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block head %}Homepage{% endblock %}
+
+ {% block body %}
+{% if stocks %}
+    <table>
+            <tr>
+            <th>Stockwerk </th>
+
+        </tr>
+        {% for stw in stocks %}
+        <tr>
+
+            <th>{{stw[1]}}</th>
+
+
+        </tr>
+        {% endfor %}
+    </table>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

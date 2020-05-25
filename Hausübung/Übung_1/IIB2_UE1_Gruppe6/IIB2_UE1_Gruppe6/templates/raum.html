@@ -1,0 +1,40 @@
+﻿{% extends 'base.html' %}
+{% block head %}Räumen{% endblock %}
+
+ {% block body %}
+{% if raums %}
+<table border="1" cellpadding="2" cellspacing="0">
+    <tr>
+        <th>Bezeichnung</th>
+        <th>Nummer</th>
+        <th>IFC_GUID</th>
+
+    </tr>
+    {% for raum in raums %}
+    <tr>
+        <th>{{raum[1]}}</th>
+        <th>{{raum[2]}}</th>
+        <th>{{raum[3]}}</th>
+
+
+        <th>
+            <form action="{{ url_for('application.wand') }}" method="post">
+                <button name="wand_id" type="submit" value="{{raum[0]}}">Wand</button>
+            </form>
+
+            <form action="{{ url_for('application.sensor') }}" method="post">
+                <button name="sensor_id" type="submit" value="{{raum[0]}}">Sensor</button>
+            </form>
+            <form action="{{ url_for('application.raumbearbeiten') }}" method="post">
+                <button name="bearbeiten" type="submit" value="{{raum[0]}}">Bearbeiten</button>
+            </form>
+        </th>
+    </tr>
+    {% endfor %}
+</table>
+
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

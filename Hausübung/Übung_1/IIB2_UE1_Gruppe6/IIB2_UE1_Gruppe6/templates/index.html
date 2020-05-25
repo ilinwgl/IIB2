@@ -1,0 +1,35 @@
+﻿{% extends 'base.html' %}
+{% block head %}Gebäude{% endblock %}
+
+ {% block body %}
+{% if records %}
+
+<table border="1" cellpadding="2" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Stadt</th>
+        <th>PLZ</th>
+        <th>Strasse </th>
+        <th>Haus Nr.</th>
+    </tr>
+    {% for rec in records %}
+    <tr>
+        <th>{{rec[1]}}</th>
+        <th>{{rec[2]}}</th>
+        <th>{{rec[3]}}</th>
+        <th>{{rec[4]}}</th>
+        <th>{{rec[5]}}</th>
+
+        <th>
+            <form action="{{ url_for('application.stockwerk' )}}" method="post">
+                <button name="stockwerk_id" type="submit" value="{{rec[0]}}">Stockwerk</button>
+            </form>
+        </th>
+    </tr>
+    {% endfor %}
+</table>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

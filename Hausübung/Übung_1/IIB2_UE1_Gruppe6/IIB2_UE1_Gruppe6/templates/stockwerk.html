@@ -1,0 +1,48 @@
+﻿{% extends 'base.html' %}
+{% block head %}Stockwerke{% endblock %}
+
+ {% block body %}
+{% if stocks %}
+<form action="{{ url_for('application.stockwerkcheck') }}" method="post">
+    <table border="1" cellpadding="2" cellspacing="0">
+        <tr>
+            <th>Temperaturgrenze</th>
+            <th><input type="text" name="temperaturgrenze" id="temperaturgrenze" required></th>
+        </tr>
+
+        <tr>
+            <th>Feuchtigkeitsgrenze</th>
+            <th><input type="text" name="feuchtigkeitsgrenze" id="feuchtigkeitsgrenze" required></th>
+        </tr>
+        <tr>
+            <th>
+                <button name="check" type="submit">Überprüfen</button>
+            </th>          
+        </tr>
+    </table>
+</form>
+
+<table border="1" cellpadding="2" cellspacing="0">
+    <tr>
+        <th>Bezeichnung</th>
+    </tr>
+    {% for stock in stocks %}
+    <tr>
+        <th>{{stock[1]}}</th>
+
+        <th>
+            <form action="{{ url_for('application.raum') }}" method="post">
+                <button name="raum_id" type="submit" value="{{stock[0]}}">Raum</button>
+            </form>
+            <form action="{{ url_for('application.HAVC') }}" method="post">
+                <button name="HAVC_id" type="submit" value="{{stock[0]}}">HVAC</button>
+            </form>
+        </th>
+    </tr>
+    {% endfor %}
+</table>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

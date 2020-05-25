@@ -1,0 +1,30 @@
+﻿{% extends 'base.html' %}
+{% block head %}Wand Bearbeiten{% endblock %}
+
+ {% block body %}
+{% if wand %}
+<form action="{{ url_for('application.wandspeichern') }}" method="post">
+    <table>
+        <tr>
+            <th><input type="hidden" name="id" id="id" value="{{wand[0]}}" required></th>
+        </tr>
+        <tr>
+            <th>Schaden</th>
+            <th><input type="text" name="schaden" id="schaden" value="{{wand[1]}}" required></th>
+        </tr>
+        <tr>
+            <th>IFC_GUID</th>
+            <th><input type="text" name="ifc_guid" id="ifc_guid" value="{{wand[3]}}" required></th>
+        </tr>
+        <tr>
+            <th>
+                <button name="speichern" type="submit" value="{{wand[2]}}">Speichern</button>
+            </th>
+        </tr>
+    </table>
+</form>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

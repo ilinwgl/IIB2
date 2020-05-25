@@ -1,0 +1,35 @@
+﻿{% extends 'base.html' %}
+{% block head %}Räumen Bearbeiten{% endblock %}
+
+ {% block body %}
+{% if raum %}
+<form action="{{ url_for('application.raumspeichern') }}" method="post">
+    <table>
+        <tr>
+            <th>Bezeichnung</th>
+            <th><input type="text" name="bezeichnung" id="bezeichnung" value="{{raum[1]}}" required></th>
+        </tr>
+        <tr>
+            <th>Nummer</th>
+            <th><input type="text" name="nummer" id="nummer" value="{{raum[2]}}" required></th>
+        </tr>
+        <tr>
+            <th>Ebene</th>
+            <th><input type="text" name="stockwerk" id="stockwerk" value="{{raum[3]}}" required></th>
+        </tr>
+        <tr>
+            <th>IFC_GUID</th>
+            <th><input type="text" name="ifc_guid" id="ifc_guid" value="{{raum[4]}}" required></th>
+        </tr>
+        <tr>
+            <th>
+                <button name="speichern" type="submit" value="{{raum[0]}}">Speichern</button>
+            </th>
+        </tr>
+    </table>
+</form>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+﻿{% extends 'base.html' %}
+{% block head %}Wände{% endblock %}
+
+ {% block body %}
+{% if wands %}
+<table border="1" cellpadding="2" cellspacing="0">
+    <tr>
+        <th>Wand</th>
+        <th>Schaden</th>
+        <th>IFC_GUID</th>
+    </tr>
+    {% for wand in wands %}
+    <tr>
+        <th>{{wand[2]}}</th>
+        <th>{{wand[1]}}</th>
+        <th>{{wand[3]}}</th>
+        <th>
+            <form action="{{url_for('application.wandbearbeiten')}}" method="post">              
+                <button name="bearbeiten" type="submit" value="{{wand[0]}}">Bearbeiten</button>
+            </form>
+        </th>
+
+    </tr>
+    {% endfor %}
+</table>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

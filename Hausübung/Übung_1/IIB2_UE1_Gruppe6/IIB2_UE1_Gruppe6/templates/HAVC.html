@@ -1,0 +1,57 @@
+﻿{% extends 'base.html' %}
+{% block head %}HVAC Anlagen{% endblock %}
+
+ {% block body %}
+{% if HAVCs %}
+
+    <table border="1" cellpadding="2" cellspacing="0">
+        <tr>
+            <th>Name</th>
+            <th>Typ</th>
+            <th>Position</th>
+
+        </tr>
+        {% for HAVC in HAVCs %}
+
+        <tr>
+
+            <td>
+                {{HAVC[1]}}
+            </td>
+            <td>
+                {{HAVC[2]}}
+            </td>
+            <td>
+                {{HAVC[3]}}
+            </td>
+            <td>
+                <form action="{{ url_for('application.havcdelete') }}" method="post">
+                    <input type="hidden" name="stockwerk" id="stockwerk" value="{{HAVC[4]}}" required>
+                    <button name="havc_entfernen" type="submit" value="{{HAVC[0]}}">Entfernen</button>
+                </form>
+            </td>
+            <td>
+                <form action="{{ url_for('application.havcbearbeiten') }}" method="post">
+                    <button name="bearbeiten" type="submit" value="{{HAVC[0]}}">Bearbeiten</button>
+                </form>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+<table>
+    <tr>
+        <th>
+            <form action="{{ url_for('application.havcadd') }}" method="post">
+                <button name="hinzufugen" type="submit">Hinzufügen</button>
+            </form>
+        </th>
+
+    </tr>
+</table>
+{%else%}
+<p>Keine Daten</p>
+{% endif %}
+
+{% endblock %}

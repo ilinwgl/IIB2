@@ -1,0 +1,28 @@
+﻿{% extends 'base.html' %}
+{% block head %}HVAC Daten{% endblock %}
+
+ {% block body %}
+{% if havcdatens %}
+<table border="1" cellpadding="2" cellspacing="0">
+    <tr>
+        <th>HVAC Anlage</th>
+        <th>Zeitpunkt</th>
+        <th>Stufe</th>
+        <th>Status</th>
+
+    </tr>
+    {% for havcdaten in havcdatens %}
+    <tr>
+        <th>{{havcdaten[4]}}</th>
+        <th>{{havcdaten[1]}}</th>
+        <th>{{havcdaten[2]}}</th>
+        <th>{{havcdaten[3]}}</th>
+    </tr>
+    {% endfor %}
+</table>
+
+{%else%}
+<p>Keine Daten</p>
+{% endif %}
+
+{% endblock %}

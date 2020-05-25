@@ -1,0 +1,42 @@
+﻿{% extends 'base.html' %}
+{% block head %}HVAC Anlagen Add{% endblock %}
+
+ {% block body %}
+{% if stocks %}
+    <form action="{{ url_for('application.havcnew') }}" method="post">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th><input type="text" name="name" id="name" required></th>
+            </tr>
+            <tr>
+                <th>Typ</th>
+                <th><input type="text" name="typ" id="typ" required></th>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <th><input type="text" name="position" id="position" required></th>
+            </tr>
+            <tr>
+                <th>Stockwerk</th>
+                <th>
+                    <select name="stockwerk">
+                        {% for stock in stocks %}
+                        <option>{{stock[0]}}</option>
+                        {% endfor %}
+                    </select>
+
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <button name="speichern" type="submit">Speichern</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+{%else%}
+<p>Please Log in</p>
+{% endif %}
+
+{% endblock %}

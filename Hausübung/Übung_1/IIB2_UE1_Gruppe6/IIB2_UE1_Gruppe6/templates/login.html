@@ -1,0 +1,34 @@
+﻿
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+</head>
+<body>
+    <form method="post">
+        <table>
+            <tr>
+                <th>Username</th>
+                <th><input type="text" name="username" id="username" required></th>
+            </tr>
+
+            <tr>
+                <th>Password</th>
+                <th><input type="password" name="password" id="password" required></th>
+            </tr>
+
+            <tr>
+                <th><button type="submit" id="login">Login</button></th>               
+            </tr>
+            <tr>
+                <th><a href="{{ url_for('auth.register') }}">Register</a></th>              
+            </tr>
+        </table>
+
+    </form>
+
+</body>
+</html>
+
